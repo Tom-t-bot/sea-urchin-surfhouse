@@ -37,3 +37,34 @@ nav all load correctly.
 3. Push to GitHub, enable GitHub Pages.
 4. Point domain at GitHub Pages via Cloudflare DNS (see migration plan
    discussed in chat).
+
+## Translations (es/fr/pt)
+
+The site is translated into Spanish, French, and (European) Portuguese,
+served from `es/`, `fr/`, `pt/` subfolders — the header's language picker
+switches between them. English stays at the repo root.
+
+This was done as a precise text-node substitution over the *original*
+mirrored English HTML: every visible string was extracted once, translated,
+then spliced back in without touching any markup, styling, or Squarespace
+block structure. Asset/CSS references in the subfolder copies are rewritten
+with a `../` prefix so they resolve back to the shared `images.squarespace-cdn.com/`
+etc. folders at the repo root — nothing is duplicated per language.
+
+If the English page content ever changes, translations do **not** update
+automatically — regenerate them:
+
+```
+python3 i18n/translate_build.py
+```
+
+This re-derives `es/`, `fr/`, `pt/` (and re-applies the language-picker
+markup + `lang-picker.js` tag) from the current root `*.html` files. Add any
+new English string to `i18n/translations.py` first — the script errors out
+listing exactly what's missing rather than silently shipping untranslated
+text.
+
+Note: the script rewrites the root `*.html` files in place (to populate the
+picker and add the script tag) — don't run it twice in a row without
+committing or resetting between runs, since it isn't idempotent against its
+own output (it would double up the `<script>` tag).
