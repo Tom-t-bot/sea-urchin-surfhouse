@@ -146,3 +146,52 @@ li.list-item{
   font-size:16px;
   padding:12px 0;
 }
+
+/* Photo-gallery carousels ("Explore Our Shared Spaces" and each room's own
+   gallery) never render: Squarespace loads their layout/positioning logic
+   from a webpack chunk that only exists on Squarespace's own live
+   deployment, not in a static mirror — a wget crawl can't discover or fetch
+   JS that's only requested dynamically at runtime. Their <img> tags load
+   fine with a real src (added directly in the HTML), but the surrounding
+   layout depends entirely on that missing JS: without it every slide sits
+   at width:0 and transform:translateX(-9999px). These rules replace the
+   JS-dependent layout with a plain horizontally-scrolling strip. */
+.user-items-list-carousel__slide{
+  transform:none !important;
+  width:240px !important;
+  flex:0 0 240px;
+  height:180px !important;
+}
+.user-items-list-carousel__slides{
+  display:flex !important;
+  gap:14px;
+  overflow-x:auto;
+  padding:4px 4px 12px;
+  -webkit-overflow-scrolling:touch;
+}
+.user-items-list-carousel__slides-revealer,
+.user-items-list-carousel__slideshow-holder,
+.user-items-list-carousel__gutter{
+  width:100% !important;
+  overflow:visible;
+}
+.user-items-list-carousel__media-container,
+.user-items-list-carousel__media-inner{
+  position:static !important;
+  width:100% !important;
+  height:100% !important;
+}
+.user-items-list-carousel__media{
+  position:static !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover;
+  border-radius:var(--su-radius-sm);
+}
+/* The prev/next arrows are wired to the same missing JS and do nothing on
+   click; the strip above is natively swipe/scrollable, so hide them
+   rather than leave dead buttons on the page. */
+.user-items-list-carousel__arrow-wrapper,
+.mobile-arrows{
+  display:none !important;
+}

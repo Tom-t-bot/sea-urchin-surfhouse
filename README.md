@@ -68,3 +68,38 @@ Note: the script rewrites the root `*.html` files in place (to populate the
 picker and add the script tag) — don't run it twice in a row without
 committing or resetting between runs, since it isn't idempotent against its
 own output (it would double up the `<script>` tag).
+
+## Known fixed bug: broken photo-gallery carousels
+
+Squarespace's "Explore Our Shared Spaces" strip and each room's own photo
+gallery (the `user-items-list-carousel` widget, on 11 pages) never rendered
+any images in the raw mirror. Root cause: Squarespace loads that carousel's
+layout/positioning logic from a webpack chunk fetched at runtime — code a
+static `wget` crawl can't discover, since it's never referenced in the HTML,
+only requested dynamically by already-running JS. Without it, every slide's
+`<img>` has no `src` at all (only a JS-only `data-src`), and the ones that
+do get a `src` collapse to `width:0` with `transform:translateX(-9999px)`,
+since that positioning is also computed by the same missing JS.
+
+Fixed by: giving every carousel `<img>` a real `src` (derived from its
+`data-image` attribute, converted to the already-mirrored local path — 84
+of the 95 unique gallery images had never actually been fetched by the
+original mirror at all, since `data-src`/`data-image` aren't attributes
+`wget --page-requisites` follows; fetched those from Squarespace's still-live
+CDN), and replacing the JS-dependent layout with a plain CSS horizontal
+scroll strip (`theme.css`, `.user-items-list-carousel__*` rules). The dead
+prev/next arrow buttons are hidden since the strip is natively scrollable.
+
+If you add a new page that uses this same carousel pattern, run the fix
+again — it's not part of `i18n/translate_build.py` since it's a one-time
+content fix, not a build step. Ask Claude, or see the session history for
+the exact script.
+
+## Studio Reef photos
+
+`studio-reef/` holds real, current photos of Studio Reef (added directly to
+the repo, not from the Squarespace mirror). `studio.html`'s main photo and
+its 7-slide gallery use these; the old mirrored photos for that room were
+removed. Referenced as `studio-reef/...` from the root pages and
+`../studio-reef/...` from the `es/fr/pt` copies, same convention as
+`theme.css`.

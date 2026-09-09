@@ -61,6 +61,7 @@ def fix_asset_paths(text):
         text = text.replace(d + '/', '../' + d + '/')
     text = text.replace('href="theme.css"', 'href="../theme.css"')
     text = text.replace('href="cart.html"', 'href="../cart.html"')
+    text = text.replace('src="studio-reef/', 'src="../studio-reef/')
     return text
 
 
