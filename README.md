@@ -103,3 +103,53 @@ its 7-slide gallery use these; the old mirrored photos for that room were
 removed. Referenced as `studio-reef/...` from the root pages and
 `../studio-reef/...` from the `es/fr/pt` copies, same convention as
 `theme.css`.
+
+## The Cave (replaces Caravan Crazy Left)
+
+Caravan Crazy Left is gone — removed as a stay, `caravan.html` deleted.
+`cave.html` (built from the old caravan page as a template, not a fresh
+page) replaces it: name, copy, photos, and every internal link across
+`index.html`, `surfhouse.html`, and `ribeiraapartment.html`'s accommodation
+grids/carousels point at `cave.html` now, styled identically to the other
+rooms. Photos live in `cave-room/` (same convention as `studio-reef/`).
+
+Current pricing (updated 2026-09-30) across `surfhouse.html`,
+`ribeiraapartment.html`'s "Explore All Stays" grid, and the apartment's own
+price line:
+
+| Stay | Day | Week | Month |
+|---|---|---|---|
+| Ribeira d'ilhas Apartment | €300 | €1,800 | €5,000 |
+| Studio Reef | €110 | €650 | €2,000 |
+| Bungalow Coxos | €80 | €480 | €1,450 |
+| Loft Backdoor | €100 | €600 | €1,800 |
+| The Cave — Group Room | €140 | €800 | €2,400 |
+| Container Pedra Branca | €50 | €300 | €900 |
+
+`i18n/translations.py`'s old "Caravan Crazy Left" and superseded price
+entries are left in place, unused — harmless, `translate_build.py` only
+errors on *missing* keys, never flags unused ones. Clean up only if it
+starts to bother you.
+
+### Bonus fix while in there: a second, silently-broken language picker
+
+Turned out `translate_build.py`'s picker fix only ever fixed *one* of two
+`id="multilingual-language-picker-desktop"` elements Squarespace ships on
+each page — the visible one in the desktop header. A second, identically-id'd
+copy sits nested inside the mobile header's own markup, left with its
+original broken (unpopulated, `data-src`-only) content this whole time.
+`replace_block()` now replaces every element carrying a given id, not just
+the first, and `lang-picker.js` now wires up every `.language-picker
+.language-picker-desktop` it finds via `querySelectorAll` instead of one
+`getElementById` lookup. Both now show correct, working content; the second
+instance's click-to-open doesn't fully work yet (something in Squarespace's
+own mobile-header JS interferes with it) but it's nested deep enough in
+`header-display-mobile` markup that it's unlikely to be reachable by an
+actual visitor either way — not chased further since it's tangential to
+what's actually visible/broken.
+
+Leftover unrelated to this, spotted but out of scope: a handful of
+`&quot;Caravan Crazy Left&quot;` and `alt="OLI-19.jpg"` strings remain in
+some pages' JSON-LD structured data / alt attributes — stale SEO/a11y
+metadata only, not rendered, not worth the risk of hand-editing schema.org
+blobs for a cosmetic fix.

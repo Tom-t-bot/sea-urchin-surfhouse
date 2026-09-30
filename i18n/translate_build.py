@@ -7,7 +7,7 @@ from translations import T
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 PAGES = ['index.html','surfhouse.html','ribeiraapartment.html','studio.html','bungalow-coxos.html',
-         'loft-backdoor.html','caravan.html','container.html','chill-areas.html','bbq.html',
+         'loft-backdoor.html','cave.html','container.html','chill-areas.html','bbq.html',
          'coworking.html','living-room.html','activities.html','surf-spots.html','contact.html']
 
 LANGS = ['es', 'fr', 'pt']
@@ -62,6 +62,7 @@ def fix_asset_paths(text):
     text = text.replace('href="theme.css"', 'href="../theme.css"')
     text = text.replace('href="cart.html"', 'href="../cart.html"')
     text = text.replace('src="studio-reef/', 'src="../studio-reef/')
+    text = text.replace('src="cave-room/', 'src="../cave-room/')
     return text
 
 
@@ -126,12 +127,21 @@ def build_mobile_picker(current_lang, hrefs):
 
 
 def replace_block(text, marker_id, new_block):
-    marker = text.find(marker_id)
-    if marker == -1:
+    """Replace every div carrying this id (Squarespace ships more than one
+    copy of the desktop language-picker markup — one in the visible desktop
+    header, one nested inside the mobile header's markup — both need fixing
+    or getElementById in lang-picker.js only ever finds the first)."""
+    markers = [m.start() for m in re.finditer(re.escape(marker_id), text)]
+    if not markers:
         raise ValueError(f"marker {marker_id} not found")
-    open_idx = text.rfind('<div', 0, marker)
-    end_idx = find_matching_div(text, open_idx)
-    return text[:open_idx] + new_block + text[end_idx:]
+    spans = []
+    for marker in markers:
+        open_idx = text.rfind('<div', 0, marker)
+        end_idx = find_matching_div(text, open_idx)
+        spans.append((open_idx, end_idx))
+    for open_idx, end_idx in reversed(spans):
+        text = text[:open_idx] + new_block + text[end_idx:]
+    return text
 
 
 def replace_lang_pickers(text, current_lang, page):

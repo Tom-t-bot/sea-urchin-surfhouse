@@ -1079,79 +1079,16 @@
               
 
               
-                <div 
-                  aria-controls="language-picker-menu" 
-                  aria-expanded="false" 
-                  aria-label="language picker" 
-                  class="language-picker language-picker-desktop" 
-                  id="multilingual-language-picker-desktop" 
-                  role="listbox" 
-                  tabindex="0"
-                  >
-                  <div class="current-language">
-                    
-                      
-                      
-                        <img 
-                          class="flag" 
-                          data-alt-text="flag icon" 
-                          elementtiming="nbf-flag-desktop" 
-                          
-                        />
-                      
-                    
+                <div class="language-picker language-picker-desktop" id="multilingual-language-picker-desktop">
+                  <button type="button" class="current-language" aria-haspopup="listbox" aria-expanded="false" aria-controls="language-picker-menu">
                     <span data-wg-notranslate class="current-language-name">Français</span>
-                    
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-  
-    
-  
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-<span style="margin-left:0.35em; width:1em; height:1em" class="header-dropdown-icon header-dropdown-flip">
-  <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1px" >
-    <use href="#openArrowHead" /> 
-  </svg>
-</span>
-
-
-
-                  </div>
-                  <div class="language-picker-content" id="language-picker-menu">
-                    
+                    <span class="lang-caret" aria-hidden="true">&#9662;</span>
+                  </button>
+                  <div class="language-picker-content" id="language-picker-menu" role="listbox" hidden>
+                    <a href="../container.html" role="option">English</a>
+                    <a href="../es/container.html" role="option">Español</a>
+                    <a href="../fr/container.html" role="option" aria-current="true">Français</a>
+                    <a href="../pt/container.html" role="option">Português</a>
                   </div>
                 </div>
               

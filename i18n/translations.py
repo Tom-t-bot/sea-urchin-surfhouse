@@ -364,3 +364,39 @@ PRICES = {
     "950€/month": {"es": "950€/mes", "fr": "950€/mois", "pt": "950€/mês"},
 }
 T.update(PRICES)
+
+# --- The Cave (replaces the removed Caravan Crazy Left) + updated pricing, 2026-09-30 ---
+CAVE_AND_REPRICE = {
+    "The Cave": {"es": "The Cave", "fr": "The Cave", "pt": "The Cave"},
+    "The Cave — Group Room": {"es": "The Cave — Sala de Grupo", "fr": "The Cave — Chambre Groupe", "pt": "The Cave — Quarto de Grupo"},
+    "Welcome to The Cave, our group room for crews who'd rather share the stoke than sleep alone. Tucked into the surf house and dressed wall-to-wall with a lifetime of surfboards, it's got all the energy of a surf shack with a proper bed for everyone.":
+        {"es": "Bienvenido a The Cave, nuestra sala de grupo para cuadrillas que prefieren compartir la energía del surf antes que dormir solos. Ubicada dentro de la casa de surf y decorada de pared a pared con tablas de toda una vida, tiene toda la energía de una cabaña de surfista con una cama como es debido para cada uno.",
+         "fr": "Bienvenue à The Cave, notre chambre de groupe pour les bandes qui préfèrent partager l'énergie du surf plutôt que de dormir seuls. Nichée dans la maison de surf et habillée du sol au plafond de planches de toute une vie, elle a toute l'énergie d'une cabane de surfeur avec un vrai lit pour chacun.",
+         "pt": "Bem-vindo ao The Cave, o nosso quarto de grupo para grupos de amigos que preferem partilhar a energia do surf a dormir sozinhos. Situado dentro da casa de surf e decorado de parede a parede com pranchas de uma vida inteira, tem toda a energia de uma cabana de surfista com uma cama como deve ser para cada um."},
+    "Our group room comes with its own lounge corner — guitar, dartboard, and a shelf of old films for the nights the waves take a break. More than just a place to sleep, it's where the stories from the day's session get told.":
+        {"es": "Nuestra sala de grupo cuenta con su propio rincón de estar: guitarra, diana de dardos y una estantería de películas antiguas para las noches en que las olas descansan. Más que un simple lugar para dormir, es donde se cuentan las historias de la sesión del día.",
+         "fr": "Notre chambre de groupe dispose de son propre coin salon : guitare, cible de fléchettes et une étagère de vieux films pour les soirées où les vagues font relâche. Plus qu'un simple endroit pour dormir, c'est là que se racontent les histoires de la session du jour.",
+         "pt": "O nosso quarto de grupo tem o seu próprio cantinho de convívio: guitarra, alvo de dardos e uma prateleira de filmes antigos para as noites em que as ondas descansam. Mais do que um simples lugar para dormir, é onde se contam as histórias da sessão do dia."},
+    "You'll also have full access to our shared spaces, including a well-equipped kitchen, coworking space, bathrooms, and a barbecue area — plenty of room to spread out whenever the group wants it.":
+        {"es": "También tendrás acceso completo a nuestros espacios comunes, incluyendo una cocina bien equipada, espacio de coworking, baños y zona de barbacoa: espacio de sobra para que el grupo se extienda cuando quiera.",
+         "fr": "Vous aurez également un accès complet à nos espaces partagés, comprenant une cuisine bien équipée, un espace de coworking, des sanitaires et un coin barbecue — largement de quoi s'étaler quand le groupe en a envie.",
+         "pt": "Terá também acesso total aos nossos espaços partilhados, incluindo uma cozinha bem equipada, espaço de coworking, casas de banho e zona de churrasco — espaço de sobra para o grupo se espalhar sempre que quiser."},
+
+    "140€/day": {"es": "140€/día", "fr": "140€/jour", "pt": "140€/dia"},
+    "800€/week": {"es": "800€/semana", "fr": "800€/semaine", "pt": "800€/semana"},
+    "2400€/month": {"es": "2400€/mes", "fr": "2400€/mois", "pt": "2400€/mês"},
+    "50€/day": {"es": "50€/día", "fr": "50€/jour", "pt": "50€/dia"},
+    "300€/week": {"es": "300€/semana", "fr": "300€/semaine", "pt": "300€/semana"},
+    "900€/month": {"es": "900€/mes", "fr": "900€/mois", "pt": "900€/mês"},
+    "480€/week": {"es": "480€/semana", "fr": "480€/semaine", "pt": "480€/semana"},
+    "1450€/month": {"es": "1450€/mes", "fr": "1450€/mois", "pt": "1450€/mês"},
+    "600€/week": {"es": "600€/semana", "fr": "600€/semaine", "pt": "600€/semana"},
+    "1800€/month": {"es": "1800€/mes", "fr": "1800€/mois", "pt": "1800€/mês"},
+    "650€/week": {"es": "650€/semana", "fr": "650€/semaine", "pt": "650€/semana"},
+    "2000€/month": {"es": "2000€/mes", "fr": "2000€/mois", "pt": "2000€/mês"},
+    "300€/day\xa0 - \xa01800€/week \xa0-  5000€/month":
+        {"es": "300€/día\xa0 - \xa01800€/semana \xa0-  5000€/mes",
+         "fr": "300€/jour\xa0 - \xa01800€/semaine \xa0-  5000€/mois",
+         "pt": "300€/dia\xa0 - \xa01800€/semana \xa0-  5000€/mês"},
+}
+T.update(CAVE_AND_REPRICE)
